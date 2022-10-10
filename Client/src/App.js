@@ -1,10 +1,4 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  Link,
-  Outlet,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -12,6 +6,7 @@ import Single from "./pages/Single";
 import Write from "./pages/Write";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import "./style.scss";
 
 const Layout = () => {
   return (
@@ -33,7 +28,7 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/single",
+        path: "/post/:id",
         element: <Single />,
       },
       {
@@ -54,9 +49,11 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <>
-      <RouterProvider router={router} />
-    </>
+    <div className="app">
+      <div className="container">
+        <RouterProvider router={router} />
+      </div>
+    </div>
   );
 }
 
