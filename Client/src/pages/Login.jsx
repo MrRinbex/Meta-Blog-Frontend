@@ -14,7 +14,9 @@ const Login = () => {
         <span>
           Vous n'avez pas de compte ?
           <br />
-          <Link to="/Register"> Commencer ici</Link>
+          <Link className="link" to="/Register">
+            Commencer ici
+          </Link>
         </span>
       </form>
     </div>

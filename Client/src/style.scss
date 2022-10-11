@@ -1,21 +1,36 @@
-$whiteColor:  #e1e2e4;
+$mainColor: #07071c;
+$whiteColor: #e1e2e4;
+$greenColor: #038d6c;
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    // border: 1px solid pink;
-  }
+    // border: 1px solid rgb(236, 231, 232);
+    
+}
 .app{
     font-family: 'Anonymous Pro', monospace;
     font-family: 'Archivo', sans-serif;
+    display: flex;
+    justify-content: center;
+    background-color: $mainColor;
+    color: $whiteColor;
+
     .container{
+        width: 85vw;
+
+        .link{
+            text-decoration: none;
+            color: inherit;
+        }
         // login & register 
+
         .login{
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background-color: #1c2434;
+            background-color: $mainColor;
             height: 100vh;
 
             h1{
@@ -59,6 +74,58 @@ $whiteColor:  #e1e2e4;
                     font-size: 12px;
                     color: #abaeb4;
                     text-align: center;
+
+                    .link{
+                        color: $greenColor;
+                    }
+                }
+            }
+        }
+
+        // NAVBAR
+
+        .navbar{
+
+            .container{
+                padding: 15px 0px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;                
+                
+                .logo{
+                    img{
+                        width: 10vw;
+                    }
+                }
+
+                .links{
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+
+                    h3{
+                        font-size: 1.3em;
+                        font-weight: 400;
+                    }
+
+                    span{
+                        cursor: pointer;
+                    }
+
+                    .write{
+                        background-color: $greenColor;
+                        width: 70px;
+                        height: 70px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        &:hover{
+                            background-color: $mainColor;
+                            color: $greenColor;
+                        }
+                    }
                 }
             }
         }
