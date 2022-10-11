@@ -24,9 +24,6 @@ const Navbar = () => {
           <Link className="link" to="/?cat=science">
             <h3>Science</h3>
           </Link>
-          <Link className="link" to="/?cat=ufo">
-            <h3>Ufo</h3>
-          </Link>
           <span>Léo</span>
           <span>Déconnecter</span>
           <span className="write">
