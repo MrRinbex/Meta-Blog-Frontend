@@ -129,5 +129,18 @@ $greenColor: #038d6c;
                 }
             }
         }
+
+        //Footer
+        footer{
+            margin-top: 5vh;
+            padding: 20px;
+            display: flex;
+            justify-content: space-evenly;
+            font-size: 1.3em;
+            align-items: center;
+            img{
+                width: 10vw;
+            }
+        }
     }
 }
