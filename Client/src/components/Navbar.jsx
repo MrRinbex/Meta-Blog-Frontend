@@ -26,11 +26,9 @@ const Navbar = () => {
           </Link>
           <span>Léo</span>
           <span>Déconnecter</span>
-          <span className="write">
-            <Link className="link" to="/write">
-              Rédiger
-            </Link>
-          </span>
+          <Link className="link" to="/write">
+            <span className="write">Rédiger</span>
+          </Link>
         </div>
       </div>
     </div>
