@@ -2,6 +2,7 @@ $mainColor: #07071c;
 $whiteColor: #e1e2e4;
 $greenColor: #038d6c;
 $lightBlue: #37447f;
+$greyColor: #abaeb4;
 * {
     padding: 0;
     margin: 0;
@@ -31,7 +32,6 @@ $lightBlue: #37447f;
             position: relative;
             border: none;
             padding: 10px 30px;
-            margin: 0px 55px;
             text-decoration: none;
             font-size: 1rem;
             transition: 0.2s;
@@ -245,6 +245,96 @@ $lightBlue: #37447f;
                         p{
                             font-size: 1.4em;
                         }
+                    }
+                }
+            }
+        }
+
+        // SINGLE/POST PAGE
+
+        .single{
+            display: flex;
+            gap: 50px;
+
+            .leftBlock{
+                flex: 5;
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+
+                img{
+                    width: 100%;
+                    height: 300px;
+                    object-fit: cover;
+                }
+
+                .user{
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+
+                    img{
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+
+                    span{
+                        font-size: 1.5em;
+                        font-weight: bold;
+                    }
+
+                    .edit{
+                        display: flex;
+                        gap: 10px;
+                        padding-top: 7px;
+                        img{
+                            width: 30px;
+                            height: 30px;
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+                h1{
+                    font-size: 3rem;
+                    color: $greenColor;
+                }
+
+                p{
+                    text-align: justify;
+                    line-height: 30px;
+                }
+            }
+
+            // Menu component
+
+            .rightBlock{
+                flex: 2;
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+
+                h1{
+                    color: $greyColor;
+                    text-align: center;
+                }
+
+                .post{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 10px;
+
+                    img{
+                        width: 100%;
+                        height: 200px;
+                        object-fit: cover;
+                    }
+
+                    h2{
+                        color: $greyColor;
                     }
                 }
             }
