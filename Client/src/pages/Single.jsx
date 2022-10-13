@@ -1,55 +1,66 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Edit from "../img/edit.png";
 import Delete from "../img/trash.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Menu from "../components/Menu";
+import axios from "axios";
+import moment from "moment";
+import { AuthContext } from "../context/authContext";
 
 const Single = () => {
+  const [post, setPost] = useState({});
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const postId = location.pathname.split("/")[2];
+
+  const { currentUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:8800/api/posts/${postId}`
+        );
+        setPost(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [postId]);
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:8800/api/posts/${postId}`);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="single">
       <div className="leftBlock">
-        <img
-          src="https://www.fnordware.com/superpng/pnggrad16rgb.png"
-          alt="img"
-        />
+        <img src={post?.img} alt="img" />
         <div className="user">
-          <img
-            src="https://html.com/wp-content/uploads/flamingo.webp"
-            alt="user img"
-          />
+          {post.userImg && <img src={post.userImg} alt="user img" />}
           <div className="info">
-            <span>Léo</span>
-            <p>Article publié il y'a 4 jours</p>
+            <span>{post.username}</span>
+            <p>Article publié {moment(post.date).fromNow()}</p>
           </div>
-          <div className="edit">
-            <Link to="/write?edit=1">
-              <img src={Edit} alt="edit-btn" />
-            </Link>
-            <img src={Delete} alt="delete-btn" />
-          </div>
+          {currentUser?.username === post.username && (
+            <div className="edit">
+              <Link to="/write?edit=1">
+                <img src={Edit} alt="edit-btn" />
+              </Link>
+              <img onClick={handleDelete} src={Delete} alt="delete-btn" />
+            </div>
+          )}
         </div>
-        <h1>Titre exemple 1</h1>
-        <p>
-          Lorem ipsum odor amet, consectetuer adipiscing elit. Ac purus in massa
-          egestas mollis varius; dignissim elementum. Mollis tincidunt mattis
-          hendrerit dolor eros enim, nisi ligula ornare. Hendrerit parturient
-          habitant pharetra rutrum gravida porttitor eros feugiat. Mollis elit
-          sodales taciti duis praesent id. Consequat urna vitae morbi nunc
-          congue. Lorem ipsum odor amet,
-          <br />
-          <br /> consectetuer adipiscing elit. Ac purus in massa egestas mollis
-          varius; dignissim elementum. Mollis tincidunt mattis hendrerit dolor
-          eros enim, nisi ligula ornare. Hendrerit parturient habitant pharetra
-          rutrum gravida porttitor eros feugiat. Mollis elit sodales taciti duis
-          praesent id. Consequat urna vitae morbi nunc congue. Lorem ipsum odor
-          amet, consectetuer adipiscing elit. Ac purus in massa egestas mollis
-          varius;
-          <br />
-          <br /> dignissim elementum. Mollis tincidunt mattis hendrerit dolor
-          eros enim, nisi ligula ornare. Hendrerit parturient habitant pharetra
-          rutrum gravida porttitor eros feugiat. Mollis elit sodales taciti duis
-          praesent id. Consequat urna vitae morbi nunc congue.
-        </p>
+        <h1>{post.title}</h1>
+        {post.description}
       </div>
       <Menu />
     </div>

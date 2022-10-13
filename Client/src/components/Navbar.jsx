@@ -11,7 +11,9 @@ const Navbar = () => {
     <div className="navbar">
       <div className="container">
         <div className="logo">
-          <img src={Logo} alt="Logo" />
+          <Link to="/">
+            <img src={Logo} alt="Logo" />
+          </Link>
         </div>
         <div className="links">
           <Link className="link" to="/?cat=metaverse">
@@ -29,9 +31,11 @@ const Navbar = () => {
           <Link className="link" to="/?cat=science">
             <h3>Science</h3>
           </Link>
-          <span>{currentUser?.username}</span>
+          <span className="userNav">{currentUser?.username}</span>
           {currentUser ? (
-            <span onClick={logout}>Déconnecter</span>
+            <Link className="link" to="/">
+              <span onClick={logout}>Déconnecter</span>
+            </Link>
           ) : (
             <Link className="link" to="/login">
               Connecter
