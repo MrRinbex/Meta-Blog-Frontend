@@ -17,7 +17,6 @@ const Login = () => {
   };
 
   const { login } = useContext(AuthContext);
-  console.log(login);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
