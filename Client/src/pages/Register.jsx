@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Register = () => {
@@ -10,21 +10,20 @@ const Register = () => {
     password: "",
   });
 
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  console.log(inputs);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "http://localhost:8800/api/auth/register",
-        inputs
-      );
-      console.log("userCreated", res);
+      await axios.post("http://localhost:8800/api/auth/register", inputs);
+      navigate("/login");
     } catch (error) {
-      console.log(error);
+      setError(error.response.data);
     }
   };
 
@@ -55,7 +54,7 @@ const Register = () => {
           onChange={handleChange}
         />
         <button onClick={handleSubmit}>Valider</button>
-        <p>mot de passe / identifiant erroné</p>
+        {error && <p>{error}</p>}
         <span>
           Vous avez déjà un compte ?
           <br />
