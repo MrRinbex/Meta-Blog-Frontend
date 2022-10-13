@@ -20,32 +20,7 @@ const Home = () => {
     };
     fetchData();
   }, [cat]);
-  // const testPost = [
-  //   {
-  //     id: 1,
-  //     title: "title1",
-  //     description: "descpretion exemp",
-  //     img: "https://www.fnordware.com/superpng/pnggrad16rgb.png",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "title2",
-  //     description: "descpretion exemp",
-  //     img: "https://www.fnordware.com/superpng/pnggrad16rgb.png",
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "title3",
-  //     description: "descpretion exemp",
-  //     img: "https://www.fnordware.com/superpng/pnggrad16rgb.png",
-  //   },
-  //   {
-  //     id: 4,
-  //     title: "title4",
-  //     description: "descpretion exemp",
-  //     img: "https://www.fnordware.com/superpng/pnggrad16rgb.png",
-  //   },
-  // ];
+
   return (
     <div className="home">
       <div className="posts">
