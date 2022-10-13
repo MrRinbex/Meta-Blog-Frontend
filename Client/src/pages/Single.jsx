@@ -17,15 +17,6 @@ const Single = () => {
 
   const { currentUser } = useContext(AuthContext);
 
-  const handleDelete = async () => {
-    try {
-      await axios.delete(`http://localhost:8800/api/posts/${postId}`);
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -40,6 +31,15 @@ const Single = () => {
     fetchData();
   }, [postId]);
 
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:8800/api/posts/${postId}`);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="single">
       <div className="leftBlock">
@@ -50,7 +50,7 @@ const Single = () => {
             <span>{post.username}</span>
             <p>Article publié {moment(post.date).fromNow()}</p>
           </div>
-          {currentUser.username === post.username && (
+          {currentUser?.username === post.username && (
             <div className="edit">
               <Link to="/write?edit=1">
                 <img src={Edit} alt="edit-btn" />
