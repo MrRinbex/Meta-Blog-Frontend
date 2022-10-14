@@ -48,7 +48,7 @@ const Single = () => {
       <div className="leftBlock">
         <img src={`../upload/${post?.img}`} alt="img" />
         <div className="user">
-          {post.userImg && <img src={post.userImg} alt="user img" />}
+          {post.userImg && <img src={post?.userImg} alt="user img" />}
           <div className="info">
             <span>{post.username}</span>
             <p>Article publié {moment(post.date).fromNow()}</p>

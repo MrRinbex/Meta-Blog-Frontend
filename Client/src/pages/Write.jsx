@@ -6,14 +6,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
 
 const Write = () => {
-  const navigate = useNavigate();
-
   const state = useLocation().state;
   const [value, setValue] = useState(state?.description || "");
   const [file, setFile] = useState(null);
   const [title, setTitle] = useState(state?.title || "");
   const [cat, setCat] = useState(state?.cat || "");
 
+  const navigate = useNavigate();
   const upload = async () => {
     try {
       const formData = new FormData();
@@ -25,8 +24,9 @@ const Write = () => {
     }
   };
 
-  const handleClick = async (e) => {
-    e.preventDefault();
+  const handleClick = async (event) => {
+    // e.preventDefault();
+    event.preventDefault();
     const urlImage = await upload();
     try {
       state
@@ -83,7 +83,7 @@ const Write = () => {
             onChange={(e) => setFile(e.target.files[0])}
           />
           <label className="file" htmlFor="file">
-            télécharger
+            télécharger une image
           </label>
           <div className="buttons">
             <button>Enregistrer comme Brouillon</button>
