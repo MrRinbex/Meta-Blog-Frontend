@@ -38,10 +38,15 @@ const Single = () => {
     }
   };
 
+  const getTextHtml = (html) => {
+    const document = new DOMParser().parseFromString(html, "text/html");
+    return document.body.textContent;
+  };
+
   return (
     <div className="single">
       <div className="leftBlock">
-        <img src={post?.img} alt="img" />
+        <img src={`../upload/${post?.img}`} alt="img" />
         <div className="user">
           {post.userImg && <img src={post.userImg} alt="user img" />}
           <div className="info">
@@ -50,7 +55,7 @@ const Single = () => {
           </div>
           {currentUser?.username === post.username && (
             <div className="edit">
-              <Link to="/write?edit=1">
+              <Link to={"/write?edit=1"} state={post}>
                 <img src={Edit} alt="edit-btn" />
               </Link>
               <img onClick={handleDelete} src={Delete} alt="delete-btn" />
@@ -58,7 +63,7 @@ const Single = () => {
           )}
         </div>
         <h1>{post.title}</h1>
-        {post.description}
+        {getTextHtml(post.description)}
       </div>
       <Menu cat={post.cat} />
     </div>
