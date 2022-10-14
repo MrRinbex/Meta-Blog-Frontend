@@ -13,7 +13,6 @@ const Home = () => {
       try {
         const res = await axios.get(`http://localhost:8800/api/posts${cat}`);
         setPosts(res.data);
-        console.log(res);
       } catch (error) {
         console.log(error);
       }
