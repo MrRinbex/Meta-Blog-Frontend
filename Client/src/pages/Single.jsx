@@ -6,6 +6,7 @@ import Menu from "../components/Menu";
 import axios from "axios";
 import moment from "moment";
 import { AuthContext } from "../context/authContext";
+import DOMPurify from "dompurify";
 
 const Single = () => {
   const [post, setPost] = useState({});
@@ -38,11 +39,6 @@ const Single = () => {
     }
   };
 
-  const getTextHtml = (html) => {
-    const document = new DOMParser().parseFromString(html, "text/html");
-    return document.body.textContent;
-  };
-
   return (
     <div className="single">
       <div className="leftBlock">
@@ -55,15 +51,24 @@ const Single = () => {
           </div>
           {currentUser?.username === post.username && (
             <div className="edit">
-              <Link to={"/write?edit=1"} state={post}>
-                <img src={Edit} alt="edit-btn" />
+              <Link to={`/write?edit=${post.id}`} state={post}>
+                <img src={Edit} alt="edit-btn" data-hover="édité" />
               </Link>
-              <img onClick={handleDelete} src={Delete} alt="delete-btn" />
+              <img
+                onClick={handleDelete}
+                src={Delete}
+                alt="delete-btn"
+                data-hover="effacer"
+              />
             </div>
           )}
         </div>
         <h1>{post.title}</h1>
-        {getTextHtml(post.description)}
+        <p
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(post.description),
+          }}
+        ></p>
       </div>
       <Menu cat={post.cat} />
     </div>
