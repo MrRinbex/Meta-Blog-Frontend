@@ -156,6 +156,9 @@ $greyColor: #abaeb4;
                     .userNav{
                         color: $greenColor;
                     }
+                    .userConnect{
+                        color: $greenColor;
+                    }
 
                     span{
                         cursor: pointer;
@@ -412,7 +415,7 @@ $greyColor: #abaeb4;
                     .buttons{
                         display: flex;
                         justify-content: space-around;
-                        
+
                         .warning{
                             color: red;
                             background-color: transparent;

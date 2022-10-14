@@ -38,12 +38,14 @@ const Navbar = () => {
             </Link>
           ) : (
             <Link className="link" to="/login">
-              Connecter
+              <span className="userConnect">Connecter</span>
             </Link>
           )}
-          <Link className="link" to="/write">
-            <span className="write">Rédiger</span>
-          </Link>
+          {currentUser && (
+            <Link className="link" to="/write">
+              <span className="write">Rédiger</span>
+            </Link>
+          )}
         </div>
       </div>
     </div>
