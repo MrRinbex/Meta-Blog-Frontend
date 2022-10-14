@@ -1,14 +1,63 @@
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
+import moment from "moment";
 
 const Write = () => {
-  const [value, setValue] = useState("");
+  const navigate = useNavigate();
+
+  const state = useLocation().state;
+  const [value, setValue] = useState(state?.description || "");
+  const [file, setFile] = useState(null);
+  const [title, setTitle] = useState(state?.title || "");
+  const [cat, setCat] = useState(state?.cat || "");
+
+  const upload = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const response = await axios.post("/upload", formData);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+    const urlImage = await upload();
+    try {
+      state
+        ? await axios.put(`/posts/${state.id}`, {
+            title,
+            description: value,
+            cat,
+            img: file ? urlImage : "",
+          })
+        : await axios.post(`/posts/`, {
+            title,
+            description: value,
+            cat,
+            img: file ? urlImage : "",
+            date: moment(Date.now()).format(`YYYY-MM-DD HH:mm:ss`),
+          });
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="writePage">
       <div className="content">
-        <input type="text" placeholder="Titre" />
+        <input
+          type="text"
+          value={title}
+          placeholder="Titre"
+          onChange={(e) => setTitle(e.target.value)}
+        />
         <div className="editorContainer">
           <ReactQuill
             className="editor"
@@ -27,35 +76,75 @@ const Write = () => {
           <span>
             <b>Visibilité:</b> Public
           </span>
-          <input style={{ display: "none" }} type="file" id="file" />
+          <input
+            style={{ display: "none" }}
+            type="file"
+            id="file"
+            onChange={(e) => setFile(e.target.files[0])}
+          />
           <label className="file" htmlFor="file">
             télécharger
           </label>
           <div className="buttons">
             <button>Enregistrer comme Brouillon</button>
-            <button>Mettre à jour</button>
+            <button onClick={handleClick}>Mettre à jour</button>
           </div>
         </div>
         <div className="items">
           <h1>Catégorie</h1>
           <div className="category">
-            <input type="radio" name="cat" value="metaverse" id="metaverse" />
+            <input
+              type="radio"
+              defaultChecked={cat === "metaverse"}
+              name="cat"
+              value="metaverse"
+              id="metaverse"
+              onClick={(e) => setCat(e.target.value)}
+            />
             <label htmlFor="metaverse">Metaverse</label>
           </div>
           <div className="category">
-            <input type="radio" name="cat" value="crypto" id="crypto" />
+            <input
+              type="radio"
+              defaultChecked={cat === "crypto"}
+              name="cat"
+              value="crypto"
+              id="crypto"
+              onClick={(e) => setCat(e.target.value)}
+            />
             <label htmlFor="crypto">Crypto</label>
           </div>
           <div className="category">
-            <input type="radio" name="cat" value="jeux" id="jeux" />
+            <input
+              type="radio"
+              defaultChecked={cat === "jeux"}
+              name="cat"
+              value="jeux"
+              id="jeux"
+              onClick={(e) => setCat(e.target.value)}
+            />
             <label htmlFor="jeux">Jeux Vidéo</label>
           </div>
           <div className="category">
-            <input type="radio" name="cat" value="technology" id="technology" />
+            <input
+              type="radio"
+              defaultChecked={cat === "technology"}
+              name="cat"
+              value="technology"
+              id="technology"
+              onClick={(e) => setCat(e.target.value)}
+            />
             <label htmlFor="technology">Technology</label>
           </div>
           <div className="category">
-            <input type="radio" name="cat" value="science" id="science" />
+            <input
+              type="radio"
+              defaultChecked={cat === "science"}
+              name="cat"
+              value="science"
+              id="science"
+              onClick={(e) => setCat(e.target.value)}
+            />
             <label htmlFor="science">Science</label>
           </div>
         </div>
