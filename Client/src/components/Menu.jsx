@@ -1,34 +1,33 @@
+import axios from "axios";
 import React from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-const Menu = () => {
-  const testPost = [
-    {
-      id: 1,
-      title: "title1",
-      description: "descpretion exemp",
-      img: "https://www.fnordware.com/superpng/pnggrad16rgb.png",
-    },
-    {
-      id: 2,
-      title: "title2",
-      description: "descpretion exemp",
-      img: "https://www.fnordware.com/superpng/pnggrad16rgb.png",
-    },
-    {
-      id: 3,
-      title: "title3",
-      description: "descpretion exemp",
-      img: "https://www.fnordware.com/superpng/pnggrad16rgb.png",
-    },
-  ];
+const Menu = ({ cat }) => {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`/posts/?cat=${cat}`);
+        setPosts(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [cat]);
+
   return (
     <div className="rightBlock">
       <h1>Autre articles qui vous s'intéresse</h1>
-      {testPost.map((post) => (
+      {posts.map((post) => (
         <div className="post" key={post.id}>
           <img src={post.img} alt="img" />
           <h2>{post.title}</h2>
-          <button className="btn">Lisez l'article</button>
+          <Link className="link" to={`/post/${post.id}`}>
+            <button className="btn">Lisez l'article</button>
+          </Link>
         </div>
       ))}
     </div>
