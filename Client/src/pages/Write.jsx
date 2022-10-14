@@ -4,6 +4,8 @@ import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
+import "moment/locale/fr"; // without this line it didn't work
+moment.locale("fr");
 
 const Write = () => {
   const state = useLocation().state;
@@ -25,7 +27,6 @@ const Write = () => {
   };
 
   const handleClick = async (event) => {
-    // e.preventDefault();
     event.preventDefault();
     const urlImage = await upload();
     try {
@@ -86,8 +87,16 @@ const Write = () => {
             télécharger une image
           </label>
           <div className="buttons">
-            <button>Enregistrer comme Brouillon</button>
-            <button onClick={handleClick}>Mettre à jour</button>
+            <button className="firstBtn">Enregistrer comme Brouillon</button>
+            {file ? (
+              <button className="secondBtn" onClick={handleClick}>
+                {!state ? "Publier" : "Mettre à jour"}
+              </button>
+            ) : (
+              <p className="warning">
+                Une image pour l'article est indispensable!
+              </p>
+            )}
           </div>
         </div>
         <div className="items">

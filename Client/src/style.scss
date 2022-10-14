@@ -185,9 +185,10 @@ $greyColor: #abaeb4;
             margin-top: 5vh;
             padding: 20px;
             display: flex;
-            justify-content: space-evenly;
+            justify-content: flex-start;
             font-size: 1.3em;
-            align-items: center;
+            align-items: self-end;
+            gap: 27%;
 
             img{
                 width: 10vw;
@@ -243,11 +244,16 @@ $greyColor: #abaeb4;
                         justify-content: space-between;
                         
                         h1{
-                            font-size: 3.1em;
+                            font-size: 3em;
                         }
 
                         p{
                             font-size: 1.4em;
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                            height: 100px;
+                            opacity: .75;
+                            text-align: justify;
                         }
                     }
                 }
@@ -275,7 +281,7 @@ $greyColor: #abaeb4;
                 .user{
                     display: flex;
                     align-items: center;
-                    gap: 10px;
+                    gap: 40px;
 
                     img{
                         width: 50px;
@@ -291,12 +297,12 @@ $greyColor: #abaeb4;
 
                     .edit{
                         display: flex;
-                        gap: 10px;
+                        gap: 30px;
                         padding-top: 7px;
 
                         img{
-                            width: 30px;
-                            height: 30px;
+                            width: 50px;
+                            height: 50px;
                             cursor: pointer;
                         }
                     }
@@ -309,7 +315,8 @@ $greyColor: #abaeb4;
 
                 p{
                     text-align: justify;
-                    line-height: 30px;
+                    line-height: 40px;
+                    font-size: larger;
                 }
             }
 
@@ -324,6 +331,7 @@ $greyColor: #abaeb4;
                 h1{
                     color: $greyColor;
                     text-align: center;
+                    font-size: 1.5em;
                 }
 
                 .post{
@@ -340,6 +348,7 @@ $greyColor: #abaeb4;
 
                     h2{
                         color: $greyColor;
+                        font-size: 1.2em;
                     }
                 }
             }
@@ -403,8 +412,14 @@ $greyColor: #abaeb4;
                     .buttons{
                         display: flex;
                         justify-content: space-around;
+                        
+                        .warning{
+                            color: red;
+                            background-color: transparent;
+                            text-align: center;
+                        }
 
-                        :first-child{
+                        .firstBtn{
                             padding: 3px 5px;
                             border: 1px solid $lightBlue;
                             color: $whiteColor;
@@ -412,14 +427,16 @@ $greyColor: #abaeb4;
                             cursor: pointer;
                         }
 
-                        :last-child{
+                        .secondBtn{
                             padding: 3px 5px;
                             border: 1px solid $greenColor;
                             color: $whiteColor;
                             background-color: $greenColor;
                             cursor: pointer;
                         }
+                     
                     }
+                    
 
                     .category{
                         display: flex;
