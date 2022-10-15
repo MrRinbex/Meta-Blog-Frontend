@@ -15,6 +15,7 @@ const Write = () => {
   const [cat, setCat] = useState(state?.cat || "");
 
   const navigate = useNavigate();
+
   const upload = async () => {
     try {
       const formData = new FormData();
