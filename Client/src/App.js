@@ -4,13 +4,16 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Single from "./pages/Single";
 import Write from "./pages/Write";
+import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ScrollToTopAut from "./components/ScrollToTopAut";
 import "./style.scss";
 
 const Layout = () => {
   return (
     <>
+      <ScrollToTopAut />
       <Navbar />
       <Outlet />
       <Footer />
@@ -26,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/profile/:id",
+        element: <Profile />,
       },
       {
         path: "/post/:id",

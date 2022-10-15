@@ -31,7 +31,15 @@ const Navbar = () => {
           <Link className="link" to="/?cat=science">
             <h3>Science</h3>
           </Link>
-          <span className="userNav">{currentUser?.username}</span>
+          {currentUser && (
+            <Link
+              className="link"
+              to={`/profile/${currentUser.id}`}
+              state={currentUser}
+            >
+              <span className="userNav">{currentUser?.username}</span>
+            </Link>
+          )}
           {currentUser ? (
             <Link className="link" to="/">
               <span onClick={logout}>Déconnecter</span>
