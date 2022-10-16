@@ -47,7 +47,7 @@ const Profile = () => {
     <div className="profile">
       <div className="info">
         <div className="profileImg">
-          <img src={`../upload/${userImg}`} alt="Profile img" />
+          <img src={userImg} alt="Profile img" />
         </div>
         <div className="infoUser">
           <span>
@@ -73,7 +73,7 @@ const Profile = () => {
           (post) =>
             currentUser.id === post.userid && (
               <div className="post" key={post.id}>
-                <img src={`../upload/${post?.img}`} alt="img" />
+                <img src={post?.img} alt="img" />
                 <h2>{post.title}</h2>
                 <Link className="link" to={`/post/${post.id}`}>
                   <button className="btn">Lisez l'article</button>

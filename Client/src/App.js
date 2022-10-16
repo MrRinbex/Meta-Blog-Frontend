@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTopAut from "./components/ScrollToTopAut";
 import "./style.scss";
+// require("dotenv").config();
 
 const Layout = () => {
   return (

@@ -3,16 +3,20 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
+// import "../loadEnv.js";
 import moment from "moment";
-import "moment/locale/fr"; // without this line it didn't work
+import "moment/locale/fr";
 moment.locale("fr");
 
 const Write = () => {
   const state = useLocation().state;
   const [value, setValue] = useState(state?.description || "");
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState({});
   const [title, setTitle] = useState(state?.title || "");
   const [cat, setCat] = useState(state?.cat || "");
+
+  const uploadPrest = process.env.REACT_APP_UPLOAD_PRESET;
+  const cloudinaryRequest = process.env.REACT_APP_CLOUDINARY_REQUEST;
 
   const navigate = useNavigate();
 
@@ -20,7 +24,8 @@ const Write = () => {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const response = await axios.post("/upload", formData);
+      formData.append("upload_preset", uploadPrest);
+      const response = await axios.post(cloudinaryRequest, formData);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -29,20 +34,20 @@ const Write = () => {
 
   const handleClick = async (event) => {
     event.preventDefault();
-    const urlImage = await upload();
+    let urlImage = await upload();
     try {
       state
         ? await axios.put(`/posts/${state.id}`, {
             title,
             description: value,
             cat,
-            img: file ? urlImage : "",
+            img: file ? urlImage.url : "",
           })
         : await axios.post(`/posts/`, {
             title,
             description: value,
             cat,
-            img: file ? urlImage : "",
+            img: file ? urlImage.url : "",
             date: moment(Date.now()).format(`YYYY-MM-DD HH:mm:ss`),
           });
       navigate("/");
