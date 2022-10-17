@@ -22,6 +22,7 @@ const Login = () => {
     e.preventDefault();
     try {
       await login(inputs);
+      console.log(inputs);
       navigate("/");
     } catch (error) {
       setError(error.response.data);
