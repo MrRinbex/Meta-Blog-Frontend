@@ -17,6 +17,7 @@ const Write = () => {
 
   const uploadPrest = process.env.REACT_APP_UPLOAD_PRESET;
   const cloudinaryRequest = process.env.REACT_APP_CLOUDINARY_REQUEST;
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const navigate = useNavigate();
 
@@ -37,13 +38,13 @@ const Write = () => {
     let urlImage = await upload();
     try {
       state
-        ? await axios.put(`/posts/${state.id}`, {
+        ? await axios.put(`${API_URL}/api/posts/${state.id}`, {
             title,
             description: value,
             cat,
             img: file ? urlImage.url : "",
           })
-        : await axios.post(`/posts/`, {
+        : await axios.post(`${API_URL}/api/posts/`, {
             title,
             description: value,
             cat,

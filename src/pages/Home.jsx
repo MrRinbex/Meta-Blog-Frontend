@@ -8,17 +8,19 @@ const Home = () => {
 
   const cat = useLocation().search;
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`http://localhost:8800/api/posts${cat}`);
+        const res = await axios.get(`${API_URL}/api/posts${cat}`);
         setPosts(res.data);
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, [cat]);
+  }, [cat, API_URL]);
 
   const getTextHtml = (html) => {
     const document = new DOMParser().parseFromString(html, "text/html");
