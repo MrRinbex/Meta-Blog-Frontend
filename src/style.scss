@@ -219,6 +219,7 @@ $greyColor: #abaeb4;
                     .img{
                         flex: 2;
                         position: relative;
+                        height: 100%;
                         z-index: 1;
 
                         &::after{
@@ -410,6 +411,8 @@ $greyColor: #abaeb4;
                     .file{
                         text-decoration: underline;
                         cursor: pointer;
+                        color: darksalmon;
+                        font-size: 1.1em;
                     }
 
                     .buttons{
