@@ -26,7 +26,6 @@ const Write = () => {
       const formData = new FormData();
       formData.append("file", file);
       formData.append("upload_preset", "ig1bktqr");
-      console.log(formData);
       const response = await axios.post(
         "https://api.cloudinary.com/v1_1/dpnotxpqf/image/upload",
         formData
@@ -37,12 +36,9 @@ const Write = () => {
     }
   };
 
-  console.log(upload());
-
   const handleClick = async (event) => {
     event.preventDefault();
     let urlImage = await upload();
-    console.log(urlImage);
     try {
       state
         ? await axios.put(`${apiUrl}/api/posts/${state.id}`, {
