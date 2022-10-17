@@ -538,5 +538,18 @@ $greyColor: #abaeb4;
 
             }
         }
+
+        // ERROR PAGE
+
+        .containerErrorPage{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            img{
+                height: 50vh;
+                padding: 30px;
+            }
+        }
     }
 }
