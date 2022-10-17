@@ -15,7 +15,7 @@ const Write = () => {
   const [title, setTitle] = useState(state?.title || "");
   const [cat, setCat] = useState(state?.cat || "");
 
-  const uploadPrest = process.env.REACT_APP_UPLOAD_PRESET;
+  // const uploadPrest = process.env.REACT_APP_UPLOAD_PRESET;
   // const cloudinaryRequest = process.env.REACT_APP_CLOUDINARY_REQUEST;
   const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -25,7 +25,8 @@ const Write = () => {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", uploadPrest);
+      formData.append("upload_preset", "ig1bktqr");
+      console.log(formData);
       const response = await axios.post(
         "https://api.cloudinary.com/v1_1/dpnotxpqf/image/upload",
         formData
@@ -36,9 +37,12 @@ const Write = () => {
     }
   };
 
+  console.log(upload());
+
   const handleClick = async (event) => {
     event.preventDefault();
     let urlImage = await upload();
+    console.log(urlImage);
     try {
       state
         ? await axios.put(`${apiUrl}/api/posts/${state.id}`, {
