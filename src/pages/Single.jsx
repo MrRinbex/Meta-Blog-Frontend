@@ -14,8 +14,6 @@ const Single = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const apiUrl = process.env.REACT_APP_API_URL;
-
   const postId = location.pathname.split("/")[2];
 
   const { currentUser } = useContext(AuthContext);
@@ -23,18 +21,18 @@ const Single = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`${apiUrl}/api/posts/${postId}`);
+        const res = await axios.get(`/api/posts/${postId}`);
         setPost(res.data);
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, [postId, apiUrl]);
+  }, [postId]);
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`${apiUrl}/api/posts/${postId}`);
+      await axios.delete(`/api/posts/${postId}`);
       navigate("/");
     } catch (error) {
       console.log(error);

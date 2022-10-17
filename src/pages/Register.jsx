@@ -12,7 +12,6 @@ const Register = () => {
 
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const apiUrl = process.env.REACT_APP_API_URL;
 
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -21,7 +20,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${apiUrl}/api/auth/register`, inputs);
+      await axios.post(`/api/auth/register`, inputs);
       navigate("/login");
     } catch (error) {
       setError(error.response.data);

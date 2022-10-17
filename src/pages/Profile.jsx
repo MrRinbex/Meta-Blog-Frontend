@@ -14,12 +14,11 @@ const Profile = () => {
   const [posts, setPosts] = useState([]);
 
   const { currentUser } = useContext(AuthContext);
-  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`${apiUrl}/api/users/${userId.id}`);
+        const res = await axios.get(`/api/users/${userId.id}`);
         setUsername(res.data.username);
         setEmail(res.data.email);
         setUserImg(res.data.img);
@@ -28,21 +27,21 @@ const Profile = () => {
       }
     };
     fetchData();
-  }, [userId, apiUrl]);
+  }, [userId]);
 
   //
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`${apiUrl}/api/posts/`);
+        const res = await axios.get(`/api/posts/`);
         setPosts(res.data);
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, [apiUrl]);
+  }, []);
 
   return (
     <div className="profile">
