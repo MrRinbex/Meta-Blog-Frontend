@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import Single from "./pages/Single";
 import Write from "./pages/Write";
 import Profile from "./pages/Profile";
+import Page404 from "./pages/Page404";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTopAut from "./components/ScrollToTopAut";
@@ -31,12 +32,24 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: "/*",
+        element: <Page404 />,
+      },
+      {
         path: "/profile/:id",
         element: <Profile />,
       },
       {
+        path: "/profile/*",
+        element: <Page404 />,
+      },
+      {
         path: "/post/:id",
         element: <Single />,
+      },
+      {
+        path: "/post/*",
+        element: <Page404 />,
       },
       {
         path: "/write",
