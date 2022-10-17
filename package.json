@@ -42,7 +42,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://meta-blog3-0.herokuapp.com",
+  "proxy": "https://meta-blog3-0.herokuapp.com/",
   "devDependencies": {
     "dotenv-webpack": "^8.0.1"
   }
