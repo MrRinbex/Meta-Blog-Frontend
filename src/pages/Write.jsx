@@ -11,7 +11,7 @@ moment.locale("fr");
 const Write = () => {
   const state = useLocation().state;
   const [value, setValue] = useState(state?.description || "");
-  const [file, setFile] = useState({});
+  const [file, setFile] = useState(state?.file || "");
   const [title, setTitle] = useState(state?.title || "");
   const [cat, setCat] = useState(state?.cat || "");
 
