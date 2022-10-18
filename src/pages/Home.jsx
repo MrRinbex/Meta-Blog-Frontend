@@ -5,7 +5,7 @@ import Loader from "../components/Loader";
 import axios from "axios";
 
 const Home = () => {
-  const [posts, setPosts] = useState([]);
+  let [posts, setPosts] = useState([]);
   const [loaded, setLoaded] = useState(false);
 
   const cat = useLocation().search;
@@ -30,10 +30,16 @@ const Home = () => {
     return document.body.textContent;
   };
 
+  // Random posts =>
+  const shuffled = [...posts]
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
+
   return loaded ? (
     <div className="home">
       <div className="posts">
-        {posts.map((post) => (
+        {shuffled.map((post) => (
           <div className="post" key={post.id}>
             <div className="img">
               <img src={post?.img} alt="img" />

@@ -25,7 +25,7 @@ const Single = () => {
       try {
         const res = await axios.get(`/api/posts/${postId}`);
         setPost(res.data);
-        if (post) {
+        if (res.data) {
           setLoaded(true);
         }
       } catch (error) {
@@ -33,7 +33,7 @@ const Single = () => {
       }
     };
     fetchData();
-  }, [postId, post]);
+  }, [postId]);
 
   const handleDelete = async () => {
     try {
