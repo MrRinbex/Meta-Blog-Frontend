@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../context/authContext";
+import Page404 from "./Page404";
 
 const Profile = () => {
   //   const location = useLocation();
@@ -43,7 +44,9 @@ const Profile = () => {
     fetchData();
   }, []);
 
-  return (
+  return userId === null ? (
+    <Page404 />
+  ) : (
     <div className="profile">
       <div className="info">
         <div className="profileImg">

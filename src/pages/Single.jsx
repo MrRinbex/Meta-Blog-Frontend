@@ -7,9 +7,11 @@ import axios from "axios";
 import moment from "moment";
 import { AuthContext } from "../context/authContext";
 import DOMPurify from "dompurify";
+import Loader from "../components/Loader";
 
 const Single = () => {
   const [post, setPost] = useState({});
+  const [loaded, setLoaded] = useState(false);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -23,12 +25,15 @@ const Single = () => {
       try {
         const res = await axios.get(`/api/posts/${postId}`);
         setPost(res.data);
+        if (post) {
+          setLoaded(true);
+        }
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, [postId]);
+  }, [postId, post]);
 
   const handleDelete = async () => {
     try {
@@ -39,7 +44,7 @@ const Single = () => {
     }
   };
 
-  return (
+  return loaded ? (
     <div className="single">
       <div className="leftBlock">
         <img src={post?.img} alt="img" />
@@ -72,6 +77,8 @@ const Single = () => {
       </div>
       <Menu cat={post.cat} />
     </div>
+  ) : (
+    <Loader />
   );
 };
 

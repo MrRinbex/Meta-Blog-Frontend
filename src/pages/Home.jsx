@@ -1,10 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import Loader from "../components/Loader";
 import axios from "axios";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   const cat = useLocation().search;
 
@@ -13,19 +15,22 @@ const Home = () => {
       try {
         const res = await axios.get(`/api/posts${cat}`);
         setPosts(res.data);
+        if (posts) {
+          setLoaded(true);
+        }
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, [cat]);
+  }, [cat, posts]);
 
   const getTextHtml = (html) => {
     const document = new DOMParser().parseFromString(html, "text/html");
     return document.body.textContent;
   };
 
-  return (
+  return loaded ? (
     <div className="home">
       <div className="posts">
         {posts.map((post) => (
@@ -47,6 +52,8 @@ const Home = () => {
         ))}
       </div>
     </div>
+  ) : (
+    <Loader />
   );
 };
 

@@ -17,9 +17,24 @@ $greyColor: #abaeb4;
     justify-content: center;
     background-color: $mainColor;
     color: $whiteColor;
-
+    
     .container{
         width: 85vw;
+        height: 100vh;
+
+        // ENTRANCE PAGE
+        
+        .setEntrancePage {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+
+            img{
+                height: 300px;
+            }
+        }
+
 
         .link{
             text-decoration: none;
@@ -130,12 +145,16 @@ $greyColor: #abaeb4;
         // NAVBAR
 
         .navbar{
+            height: 25vh;
+            display: flex;
 
             .container{
                 padding: 15px 0px;
                 display: flex;
                 justify-content: space-between;
-                align-items: center;                
+                align-items: center;
+                flex-direction: row;
+                height: 100%;                
                 
                 .logo{
                     img{
@@ -185,13 +204,13 @@ $greyColor: #abaeb4;
         //Footer
 
         footer{
-            margin-top: 5vh;
             padding: 20px;
             display: flex;
             justify-content: flex-start;
             font-size: 1.3em;
             align-items: self-end;
             gap: 30%;
+            height: 25vh;
 
             img{
                 width: 10vw;
@@ -207,6 +226,7 @@ $greyColor: #abaeb4;
                 display: flex;
                 flex-direction: column;
                 gap: 10vh;
+                margin-bottom: 30px;
                 
                 .post{
                     display: flex;
@@ -231,6 +251,7 @@ $greyColor: #abaeb4;
                             top: 10px;
                             right: -15px;
                             z-index: -1;
+                            opacity: 0.15;
 
                         }
 
@@ -443,7 +464,6 @@ $greyColor: #abaeb4;
                      
                     }
                     
-
                     .category{
                         display: flex;
                         align-items: center;
@@ -554,5 +574,18 @@ $greyColor: #abaeb4;
                 padding: 30px;
             }
         }
+
+        // LOADER
+
+        .loader{
+            display: flex;
+            justify-content: center;
+            height: 50vh;            
+
+            img{
+                object-fit: contain;
+            }
+        }
+
     }
 }
