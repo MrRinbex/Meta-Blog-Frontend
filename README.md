@@ -1,4 +1,23 @@
-# Getting Started with Create React App
+# Meta Blog 3.0 https://meta-blog-3-0.netlify.app
+
+This is a blog project with this API backend server : https://github.com/MrRinbex/Meta-Blog-Backend 
+
+Package using : 
+
+- React-Quill
+- Sass
+- Dompurify
+- Moment
+- AWS RDS
+- Mysql
+- Netlify
+- Heroku
+- Cloudinary/Storage
+- Multer
+- JWT
+- Bcrypt
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
