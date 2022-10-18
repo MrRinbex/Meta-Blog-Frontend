@@ -231,6 +231,7 @@ $greyColor: #abaeb4;
                             top: 10px;
                             right: -15px;
                             z-index: -1;
+                            opacity: 0.15;
 
                         }
 
@@ -554,5 +555,18 @@ $greyColor: #abaeb4;
                 padding: 30px;
             }
         }
+
+        // LOADER
+
+        .loader{
+            display: flex;
+            justify-content: center;            
+
+            img{
+                height: 350px;
+                object-fit: contain;
+            }
+        }
+
     }
 }

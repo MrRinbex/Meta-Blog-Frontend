@@ -5,19 +5,18 @@ import { Link } from "react-router-dom";
 
 const Menu = ({ cat }) => {
   const [posts, setPosts] = useState([]);
-  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`${apiUrl}/api/posts/?cat=${cat}`);
+        const res = await axios.get(`/api/posts/?cat=${cat}`);
         setPosts(res.data);
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, [cat, apiUrl]);
+  }, [cat]);
 
   return (
     <div className="rightBlock">
