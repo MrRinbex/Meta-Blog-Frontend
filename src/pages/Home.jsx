@@ -15,7 +15,7 @@ const Home = () => {
       try {
         const res = await axios.get(`/api/posts${cat}`);
         setPosts(res.data);
-        if (posts) {
+        if (res.data) {
           setLoaded(true);
         }
       } catch (error) {
@@ -23,7 +23,7 @@ const Home = () => {
       }
     };
     fetchData();
-  }, [cat, posts]);
+  }, [cat]);
 
   const getTextHtml = (html) => {
     const document = new DOMParser().parseFromString(html, "text/html");
