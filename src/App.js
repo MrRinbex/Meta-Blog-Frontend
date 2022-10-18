@@ -9,6 +9,8 @@ import Page404 from "./pages/Page404";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTopAut from "./components/ScrollToTopAut";
+import { useState } from "react";
+import EntrancePage from "./pages/EntrancePage";
 import "./style.scss";
 
 const Layout = () => {
@@ -33,6 +35,10 @@ const router = createBrowserRouter([
       },
       {
         path: "/*",
+        element: <Page404 />,
+      },
+      {
+        path: "/*/",
         element: <Page404 />,
       },
       {
@@ -68,10 +74,16 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const [entrancePage, setEntrancePage] = useState(true);
+
+  setTimeout(() => {
+    setEntrancePage(false);
+  }, 2500);
+
   return (
     <div className="app">
       <div className="container">
-        <RouterProvider router={router} />
+        {entrancePage ? <EntrancePage /> : <RouterProvider router={router} />}
       </div>
     </div>
   );

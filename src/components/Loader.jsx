@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import loaderGif from "../img/loader.gif";
 
 const Loader = () => {
   const [start, setStart] = useState(false);
 
-  setTimeout(() => {
-    setStart(true);
-  }, 500);
+  useEffect(() => {
+    setInterval(() => {
+      setStart(true);
+    }, 3000);
+  }, []);
 
   return (
-    start && (
-      <div className="loader">
-        <img src={loaderGif} alt="loader logo" />
-      </div>
-    )
+    <div className="loader">
+      {start ? <img src={loaderGif} alt="loader logo" /> : <div></div>}
+    </div>
   );
 };
 

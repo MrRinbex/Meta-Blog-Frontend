@@ -25,9 +25,9 @@ const Single = () => {
       try {
         const res = await axios.get(`/api/posts/${postId}`);
         setPost(res.data);
-        setTimeout(() => {
+        if (post) {
           setLoaded(true);
-        }, post);
+        }
       } catch (error) {
         console.log(error);
       }

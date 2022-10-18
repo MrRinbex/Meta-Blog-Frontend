@@ -15,9 +15,9 @@ const Home = () => {
       try {
         const res = await axios.get(`/api/posts${cat}`);
         setPosts(res.data);
-        setTimeout(() => {
+        if (posts) {
           setLoaded(true);
-        }, posts);
+        }
       } catch (error) {
         console.log(error);
       }
