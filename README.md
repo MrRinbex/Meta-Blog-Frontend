@@ -1,5 +1,8 @@
 # [Meta Blog 3.0](https://meta-blog-3-0.netlify.app)
 
+
+<img src="https://res.cloudinary.com/dpnotxpqf/image/upload/v1665885592/blog/1665843685053logoMetaBlog_qzsnzh.png" />
+
 This is a blog project with this API backend server : https://github.com/MrRinbex/Meta-Blog-Backend
 
 Package using :
@@ -17,7 +20,7 @@ Package using :
 - JWT
 - Bcrypt
 
-<img src="https://res.cloudinary.com/dpnotxpqf/image/upload/v1665885592/blog/1665843685053logoMetaBlog_qzsnzh.png" />
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
