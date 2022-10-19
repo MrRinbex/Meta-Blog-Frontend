@@ -78,7 +78,7 @@ function App() {
 
   setTimeout(() => {
     setEntrancePage(false);
-  }, 2500);
+  }, 3000);
 
   return (
     <div className="app">

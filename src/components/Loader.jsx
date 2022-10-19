@@ -7,7 +7,7 @@ const Loader = () => {
   useEffect(() => {
     setInterval(() => {
       setStart(true);
-    }, 3000);
+    }, 1000);
   }, []);
 
   return (
