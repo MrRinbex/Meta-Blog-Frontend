@@ -449,6 +449,7 @@ $greyColor: #abaeb4;
                             color: red;
                             background-color: transparent;
                             text-align: center;
+                            font-size: 14px;
                         }
 
                         .firstBtn{
@@ -471,6 +472,7 @@ $greyColor: #abaeb4;
                     
                     .category{
                         display: flex;
+                        font-size: 1rem;
                         align-items: center;
                         gap: 7px;
                         color: $greenColor;
