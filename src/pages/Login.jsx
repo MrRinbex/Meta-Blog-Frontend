@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { AuthContext } from "../context/authContext";
+import { motion } from "framer-motion";
 
 const Login = () => {
   const [inputs, setInputs] = useState({
@@ -28,7 +29,13 @@ const Login = () => {
     }
   };
   return (
-    <div className="login">
+    <motion.div
+      className="login"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1.7 }}
+    >
       <h1>Se connecter</h1>
       <p>Veuillez remplir les champs-ci-dessous pour vous connecter.</p>
       <form>
@@ -56,7 +63,7 @@ const Login = () => {
           </Link>
         </span>
       </form>
-    </div>
+    </motion.div>
   );
 };
 
