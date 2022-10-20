@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import moment from "moment";
 import "moment/locale/fr";
+
 moment.locale("fr");
 
 const Write = () => {
@@ -98,6 +99,7 @@ const Write = () => {
           <label className="file" htmlFor="file">
             télécharger une image
           </label>
+
           <div className="buttons">
             <button className="firstBtn">Enregistrer comme Brouillon</button>
             {file ? (
@@ -126,6 +128,7 @@ const Write = () => {
           </div>
           <div className="category">
             <input
+              color="red"
               type="radio"
               defaultChecked={cat === "crypto"}
               name="cat"
