@@ -8,16 +8,14 @@ import moment from "moment";
 import { AuthContext } from "../context/authContext";
 import DOMPurify from "dompurify";
 import Loader from "../components/Loader";
+import { motion } from "framer-motion";
 
 const Single = () => {
   const [post, setPost] = useState({});
   const [loaded, setLoaded] = useState(false);
-
   const location = useLocation();
   const navigate = useNavigate();
-
   const postId = location.pathname.split("/")[2];
-
   const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
@@ -45,10 +43,29 @@ const Single = () => {
   };
 
   return loaded ? (
-    <div className="single">
+    <motion.div
+      className="single"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1.7 }}
+    >
       <div className="leftBlock">
-        <img src={post?.img} alt="img" />
-        <div className="user">
+        <motion.img
+          src={post?.img}
+          alt="img"
+          initial={{ opacity: 0, y: -100 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 100 }}
+          transition={{ duration: 2.7 }}
+        />
+        <motion.div
+          className="user"
+          initial={{ opacity: 0, x: -200 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 200 }}
+          transition={{ duration: 2.7 }}
+        >
           {post.userImg && <img src={post?.userImg} alt="user img" />}
           <div className="info">
             <span>{post.username}</span>
@@ -67,16 +84,27 @@ const Single = () => {
               />
             </div>
           )}
-        </div>
-        <h1>{post.title}</h1>
-        <p
+        </motion.div>
+        <motion.h1
+          initial={{ opacity: 0, x: 200 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -200 }}
+          transition={{ duration: 2.7 }}
+        >
+          {post.title}
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -100 }}
+          transition={{ duration: 2.7 }}
           dangerouslySetInnerHTML={{
             __html: DOMPurify.sanitize(post.description),
           }}
-        ></p>
+        ></motion.p>
       </div>
       <Menu cat={post.cat} />
-    </div>
+    </motion.div>
   ) : (
     <Loader />
   );

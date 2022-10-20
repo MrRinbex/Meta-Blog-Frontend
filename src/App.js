@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -9,82 +9,41 @@ import Page404 from "./pages/Page404";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTopAut from "./components/ScrollToTopAut";
-import { useState } from "react";
-import EntrancePage from "./pages/EntrancePage";
+import React, { useState } from "react";
 import "./style.scss";
-
-const Layout = () => {
-  return (
-    <>
-      <ScrollToTopAut />
-      <Navbar />
-      <Outlet />
-      <Footer />
-    </>
-  );
-};
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Layout />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/*",
-        element: <Page404 />,
-      },
-      {
-        path: "/*/",
-        element: <Page404 />,
-      },
-      {
-        path: "/profile/:id",
-        element: <Profile />,
-      },
-      {
-        path: "/profile/*",
-        element: <Page404 />,
-      },
-      {
-        path: "/post/:id",
-        element: <Single />,
-      },
-      {
-        path: "/post/*",
-        element: <Page404 />,
-      },
-      {
-        path: "/write",
-        element: <Write />,
-      },
-    ],
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
-  },
-]);
+import { AnimatePresence } from "framer-motion";
+import EntrancePage from "./pages/EntrancePage";
 
 function App() {
   const [entrancePage, setEntrancePage] = useState(true);
+  const location = useLocation();
 
   setTimeout(() => {
     setEntrancePage(false);
-  }, 3000);
+  }, 3500);
 
-  return (
+  return entrancePage ? (
+    <EntrancePage />
+  ) : (
     <div className="app">
-      <div className="container">
-        {entrancePage ? <EntrancePage /> : <RouterProvider router={router} />}
-      </div>
+      <AnimatePresence mode="wait">
+        <div className="container">
+          <ScrollToTopAut />
+          <Navbar />
+          <Routes key={location.pathname} location={location}>
+            <Route exact path="/" element={<Home />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/post/:id" element={<Single />} />
+            <Route path="/profile/:id" element={<Profile />} />
+            <Route path="/write" element={<Write />} />
+            <Route path="*" element={<Page404 />} />
+            <Route path="/*" element={<Page404 />} />
+            <Route path="/*/" element={<Page404 />} />
+          </Routes>
+          <Footer />
+        </div>
+      </AnimatePresence>
     </div>
   );
 }

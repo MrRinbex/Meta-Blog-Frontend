@@ -10,6 +10,19 @@ $greyColor: #abaeb4;
     // border: 1px solid rgb(236, 231, 232);
     
 }
+// ENTRANCE PAGE
+
+.setEntrancePage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    img{
+        display: block;
+        height: 300px;
+    }
+}
 .app{
     font-family: 'Anonymous Pro', monospace;
     font-family: 'Archivo', sans-serif;
@@ -22,18 +35,6 @@ $greyColor: #abaeb4;
         width: 85vw;
         height: 100vh;
 
-        // ENTRANCE PAGE
-        
-        .setEntrancePage {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-
-            img{
-                height: 300px;
-            }
-        }
 
 
         .link{
@@ -91,7 +92,7 @@ $greyColor: #abaeb4;
             align-items: center;
             justify-content: center;
             background-color: $mainColor;
-            height: 100vh;
+            height: 50vh;
 
             h1{
                 color: $whiteColor;

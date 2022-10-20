@@ -3,12 +3,19 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../img/logoMetaBlog.png";
 import { AuthContext } from "../context/authContext";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   const { currentUser, logout } = useContext(AuthContext);
 
   return (
-    <div className="navbar">
+    <motion.div
+      className="navbar"
+      initial={{ opacity: 0, y: -200 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 200 }}
+      transition={{ duration: 3.7 }}
+    >
       <div className="container">
         <div className="logo">
           <Link to="/">
@@ -56,7 +63,7 @@ const Navbar = () => {
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

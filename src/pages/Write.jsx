@@ -3,7 +3,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
-// import "../loadEnv.js";
+import { motion } from "framer-motion";
 import moment from "moment";
 import "moment/locale/fr";
 moment.locale("fr");
@@ -57,7 +57,13 @@ const Write = () => {
   };
 
   return (
-    <div className="writePage">
+    <motion.div
+      className="writePage"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1.7 }}
+    >
       <div className="content">
         <input
           type="text"
@@ -164,7 +170,7 @@ const Write = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

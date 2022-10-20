@@ -3,11 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../context/authContext";
 import Page404 from "./Page404";
+import { motion } from "framer-motion";
 
 const Profile = () => {
-  //   const location = useLocation();
-  //   const userId = pathname.split("/")[2];
-
   const userId = useLocation().state;
   const [username, setUsername] = useState(userId?.username);
   const [email, setEmail] = useState(userId?.email);
@@ -47,12 +45,30 @@ const Profile = () => {
   return userId === null ? (
     <Page404 />
   ) : (
-    <div className="profile">
+    <motion.div
+      className="profile"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1.7 }}
+    >
       <div className="info">
-        <div className="profileImg">
+        <motion.div
+          className="profileImg"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 2.7 }}
+        >
           <img src={userImg} alt="Profile img" />
-        </div>
-        <div className="infoUser">
+        </motion.div>
+        <motion.div
+          className="infoUser"
+          initial={{ opacity: 0, y: 200 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -200 }}
+          transition={{ duration: 2.7 }}
+        >
           <span>
             <h1>Informations du compte</h1>
           </span>
@@ -68,9 +84,15 @@ const Profile = () => {
             <h3>Mot de passe</h3>
             <span className="spanInfo">********</span>
           </span>
-        </div>
+        </motion.div>
       </div>
-      <div className="posts">
+      <motion.div
+        className="posts"
+        initial={{ opacity: 0, x: 200 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -200 }}
+        transition={{ duration: 2.7 }}
+      >
         <h1>Vos articles</h1>
         {posts.map(
           (post) =>
@@ -84,8 +106,8 @@ const Profile = () => {
               </div>
             )
         )}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
