@@ -1,8 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
 $mainColor: #07071c;
 $whiteColor: #e1e2e4;
 $greenColor: #038d6c;
 $lightBlue: #37447f;
 $greyColor: #abaeb4;
+
+:root {
+    --color-red: #ec1840;
+    --color-white: #fff;
+    --color-black-1: #111;
+    --color-black-2: #222;
+    --color-black-3: #444;
+    --speed-normal: 0.5s;
+    --speed-fast: 0.8s;
+  }
+
+  
+
 * {
     padding: 0;
     margin: 0;
@@ -10,6 +24,7 @@ $greyColor: #abaeb4;
     // border: 1px solid rgb(236, 231, 232);
     
 }
+
 // ENTRANCE PAGE
 
 .setEntrancePage {
@@ -23,6 +38,7 @@ $greyColor: #abaeb4;
         height: 300px;
     }
 }
+
 .app{
     font-family: 'Anonymous Pro', monospace;
     font-family: 'Archivo', sans-serif;
@@ -148,6 +164,8 @@ $greyColor: #abaeb4;
         .navbar{
             height: 25vh;
             display: flex;
+            color: var(--color-white);
+
 
             .container{
                 padding: 15px 0px;
@@ -212,6 +230,8 @@ $greyColor: #abaeb4;
             align-items: self-end;
             gap: 30%;
             height: 25vh;
+            color: var(--color-white);
+
 
             img{
                 width: 120px;
@@ -387,7 +407,7 @@ $greyColor: #abaeb4;
         .writePage{
             display: flex;
             gap: 30px;
-            height: 40vh;
+            height: 37vh;
             margin-bottom: 50px;
             margin-top: 50px;
 
@@ -429,17 +449,18 @@ $greyColor: #abaeb4;
                     flex-direction: column;
                     justify-content: space-between;
                     font-size: 12px;
-                    color: $greyColor;
+                    max-height: 19vh;
 
                     h1{
-                        font-size: 20px;
+                        font-size: 24px;
+                        text-align: center;
+                        text-decoration-line: underline;
+                        color: var(--color-white);
                     }
 
-                    .file{
-                        text-decoration: underline;
-                        cursor: pointer;
-                        color: darksalmon;
-                        font-size: 1.1em;
+                    span b {
+                        color: $lightBlue;
+                        font-size: larger;
                     }
 
                     .buttons{
@@ -447,36 +468,61 @@ $greyColor: #abaeb4;
                         justify-content: space-around;
 
                         .warning{
-                            color: red;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: var(--color-red);
                             background-color: transparent;
                             text-align: center;
                             font-size: 14px;
+                            text-transform: uppercase;
+
                         }
 
-                        .firstBtn{
-                            padding: 3px 5px;
-                            border: 1px solid $lightBlue;
-                            color: $whiteColor;
-                            background-color: $lightBlue;
-                            cursor: pointer;
-                        }
+                        // BTN FOR WRITE PAGE
 
-                        .secondBtn{
-                            padding: 3px 5px;
-                            border: 1px solid $greenColor;
-                            color: $whiteColor;
-                            background-color: $greenColor;
+                        .fileBtn {
+                            position: relative;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 10px;
                             cursor: pointer;
-                        }
-                     
-                    }
+                            padding: 10px;
+                            letter-spacing: 2px;
+                            text-decoration: none;
+                            text-transform: uppercase;
+                            text-align: center;
+                            background-color: $mainColor;
+                            color: var(--color-white);
+                            transition: var(--speed-normal);
+                            border: 1px solid var(--color-red);
+                            border-radius: 5px ;
+                            &:hover {
+                                border: 1px solid transparent;
+                                background: var(--color-red) url(https://i.postimg.cc/wBXGXbWN/pixel.png); // 360px x 1080px
+                                transition-delay: 0.8s;
+                                background-size: 180px;
+                                animation: animate var(--speed-fast) steps(8) forwards;
+                            }
+                          }    
+    
+                          }
+                          @keyframes animate {
+                            0% {
+                              background-position-y: 0;
+                            }
+                            100% {
+                              background-position-y: -480px;
+                            }
+                          }
                     
                     .category{
                         display: flex;
-                        font-size: 1rem;
+                        font-size: larger;
                         align-items: center;
-                        gap: 7px;
-                        color: $greenColor;
+                        gap: 10px;
+                        color: $greyColor;
                     }
 
                 }

@@ -85,36 +85,33 @@ const Write = () => {
         <div className="items">
           <h1>Publier</h1>
           <span>
-            <b>Statut:</b> Brouillon
+            <b>Statut:</b> {!state ? "Nouveau article" : "Prét à modifier"}
           </span>
           <span>
-            <b>Visibilité:</b> Public
+            <b>Visibilité:</b> {!state ? "Brouillon" : "Public"}
           </span>
-          <input
-            style={{ display: "none" }}
-            type="file"
-            id="file"
-            onChange={(e) => setFile(e.target.files[0])}
-          />
-          <label className="file" htmlFor="file">
-            télécharger une image
-          </label>
-
           <div className="buttons">
-            <button className="firstBtn">Enregistrer comme Brouillon</button>
+            <input
+              style={{ display: "none" }}
+              type="file"
+              id="file"
+              onChange={(e) => setFile(e.target.files[0])}
+            />
+            <label className="fileBtn" htmlFor="file">
+              télécharger
+            </label>
+            {/* <button className="firstBtn">Enregistrer comme Brouillon</button> */}
             {file ? (
-              <button className="secondBtn" onClick={handleClick}>
+              <button className="fileBtn" onClick={handleClick}>
                 {!state ? "Publier" : "Mettre à jour"}
               </button>
             ) : (
-              <p className="warning">
-                Une image pour l'article est indispensable!
-              </p>
+              <p className="warning">image requise!</p>
             )}
           </div>
         </div>
         <div className="items">
-          <h1>Catégorie</h1>
+          <h1 className="title-cat">Catégorie</h1>
           <div className="category">
             <input
               type="radio"
