@@ -221,6 +221,7 @@ $greyColor: #abaeb4;
         //HOMEPAGE
 
         .home{
+            min-height: 43vh;
 
             .posts{
                 margin-top: 50px;
@@ -258,8 +259,8 @@ $greyColor: #abaeb4;
 
                         img{
                             width: 100%;
-                            max-height: 350px;
-                            object-fit: cover;
+                            height: 300px;
+                            object-fit: fill;
                         }
                     }
 
@@ -302,7 +303,7 @@ $greyColor: #abaeb4;
                 img{
                     width: 100%;
                     height: 300px;
-                    object-fit: cover;
+                    object-fit: fill;
                 }
 
                 .user{
@@ -370,7 +371,7 @@ $greyColor: #abaeb4;
                     img{
                         width: 100%;
                         height: 200px;
-                        object-fit: cover;
+                        object-fit: fill;
                     }
 
                     h2{
@@ -563,7 +564,7 @@ $greyColor: #abaeb4;
                 img{
                     height: 200px;
                     width: 100%;
-                    object-fit: cover;
+                    object-fit: fill;
                 }
 
             }
