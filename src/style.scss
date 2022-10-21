@@ -280,7 +280,7 @@ $greyColor: #abaeb4;
                         img{
                             width: 100%;
                             height: 300px;
-                            object-fit: fill;
+                            object-fit: cover;
                         }
                     }
 
@@ -298,7 +298,7 @@ $greyColor: #abaeb4;
                             font-size: 1.4em;
                             text-overflow: ellipsis;
                             overflow: hidden;
-                            height: 99px;
+                            height: 102px;
                             opacity: .75;
                             text-align: justify;
                         }
@@ -323,7 +323,7 @@ $greyColor: #abaeb4;
                 img{
                     width: 100%;
                     height: 300px;
-                    object-fit: fill;
+                    object-fit: cover;
                 }
 
                 .user{
@@ -391,7 +391,7 @@ $greyColor: #abaeb4;
                     img{
                         width: 100%;
                         height: 200px;
-                        object-fit: fill;
+                        object-fit: cover;
                     }
 
                     h2{
@@ -610,7 +610,7 @@ $greyColor: #abaeb4;
                 img{
                     height: 200px;
                     width: 100%;
-                    object-fit: fill;
+                    object-fit: cover;
                 }
 
             }
