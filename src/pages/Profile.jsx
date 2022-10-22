@@ -42,6 +42,11 @@ const Profile = () => {
     fetchData();
   }, []);
 
+  let numberOfPosts = 0;
+  for (let i = 0; i < posts.length; i++) {
+    if (currentUser.id === posts[i].userid) numberOfPosts++;
+  }
+
   return userId === null ? (
     <Page404 />
   ) : (
@@ -79,6 +84,10 @@ const Profile = () => {
           <span>
             <h3>Email</h3>
             <span className="spanInfo">{email}</span>
+          </span>
+          <span>
+            <h3>Nombre d'articles crée</h3>
+            <span className="spanInfo">{numberOfPosts}</span>
           </span>
           <span>
             <h3>Mot de passe</h3>
