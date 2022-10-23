@@ -27,7 +27,7 @@ const ProfileEdite = () => {
         const res = await axios.get(`/api/users/${userId.id}`);
         setUsername(res.data.username);
         setEmail(res.data.email);
-        setFile(res.data.img);
+        // setFile(res.data.img);
       } catch (error) {
         console.log(error);
       }
@@ -35,29 +35,30 @@ const ProfileEdite = () => {
     fetchData();
   }, [userId]);
 
-  const upload = async () => {
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("upload_preset", uploadPrest);
-      const response = await axios.post(cloudinaryRequest, formData);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const upload = async () => {
+  //   try {
+  //     const formData = new FormData();
+  //     formData.append("file", file);
+  //     formData.append("upload_preset", uploadPrest);
+  //     const response = await axios.post(cloudinaryRequest, formData);
+  //     return response.data;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const handleClick = async (event) => {
     event.preventDefault();
-    let urlImage = await upload();
-    console.log(urlImage);
+    // let urlImage = await upload();
+    // console.log(urlImage);
     try {
-      await axios.put(`/api/users/${userId.id}`, {
-        username,
-        email,
-        password,
-        img: file ? urlImage.secure_url : "",
-      });
+      userId &&
+        (await axios.put(`/api/users/${userId.id}`, {
+          username,
+          email,
+          password,
+          // img: file ? urlImage.secure_url : "",
+        }));
       navigate(`/profile/${userId.id}`);
     } catch (error) {
       console.log(error);
@@ -73,7 +74,7 @@ const ProfileEdite = () => {
           exit={{ opacity: 0 }}
           transition={{ duration: 2.7 }}
         >
-          <img src={file} alt="Profile img" value={file} />
+          {/* <img src={file} alt="Profile img" value={file} />
           <input
             style={{ display: "none" }}
             type="file"
@@ -82,7 +83,7 @@ const ProfileEdite = () => {
           />
           <label className="file" htmlFor="file">
             télécharger une image
-          </label>
+          </label> */}
         </motion.div>
         <span>
           <h1>Modifier votre compte</h1>
