@@ -1,9 +1,9 @@
 import axios from "axios";
 import React from "react";
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { AuthContext } from "../context/authContext";
+// import { AuthContext } from "../context/authContext";
 
 const ProfileEdite = () => {
   // const { currentUser } = useContext(AuthContext);
@@ -11,13 +11,13 @@ const ProfileEdite = () => {
   const [username, setUsername] = useState(userId?.username || "");
   const [email, setEmail] = useState(userId?.email || "");
   const [password, setPassword] = useState(userId?.password || "");
-  const [file, setFile] = useState(
-    userId?.img ||
-      "https://res.cloudinary.com/dpnotxpqf/image/upload/v1665885592/blog/userDefault_c8cxqu.png"
-  );
+  // const [file, setFile] = useState(
+  //   userId?.img ||
+  //     "https://res.cloudinary.com/dpnotxpqf/image/upload/v1665885592/blog/userDefault_c8cxqu.png"
+  // );
 
-  const uploadPrest = process.env.REACT_APP_UPLOAD_PRESET;
-  const cloudinaryRequest = process.env.REACT_APP_CLOUDINARY_REQUEST;
+  // const uploadPrest = process.env.REACT_APP_UPLOAD_PRESET;
+  // const cloudinaryRequest = process.env.REACT_APP_CLOUDINARY_REQUEST;
 
   const navigate = useNavigate();
 
