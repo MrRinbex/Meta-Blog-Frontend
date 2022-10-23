@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { redirect, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 // import { AuthContext } from "../context/authContext";
 
@@ -18,8 +18,6 @@ const ProfileEdite = () => {
 
   // const uploadPrest = process.env.REACT_APP_UPLOAD_PRESET;
   // const cloudinaryRequest = process.env.REACT_APP_CLOUDINARY_REQUEST;
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -62,10 +60,10 @@ const ProfileEdite = () => {
             // img: file ? urlImage.secure_url : "",
           }
         ));
-      navigate(`/profile/${userId.id}`);
     } catch (error) {
       console.log(error);
     }
+    redirect(`/profile/${userId.id}`);
   };
   return (
     <div className="editContainer">
