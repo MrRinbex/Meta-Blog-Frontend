@@ -11,6 +11,16 @@ export const AuthContextProvider = ({ children }) => {
     const res = await axios.post(`/api/auth/login`, inputs);
     setCurrentUser(res.data);
   };
+  // const editUser = async ({ username, email, password, img }) => {
+  //   const res = await axios.put(`/api/users/${currentUser.id}`, {
+  //     username,
+  //     email,
+  //     password,
+  //     img,
+  //   });
+  //   setCurrentUser(res.data);
+  //   console.log(res.data);
+  // };
 
   const logout = async (inputs) => {
     await axios.post(`/api/auth/logout`);

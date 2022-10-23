@@ -40,8 +40,6 @@ const Profile = () => {
     fetchData();
   }, []);
 
-  console.log(currentUser);
-
   // number of user posts
   let numberOfPosts = 0;
   for (let i = 0; i < posts.length; i++) {
@@ -95,7 +93,13 @@ const Profile = () => {
             <span className="spanInfo">********</span>
           </span>
           <div className="buttonsProfile">
-            <button className="editBtn">Modifier vos informations</button>
+            <Link
+              className="link"
+              to={`/edit/profile/${userId.id}`}
+              state={userId}
+            >
+              <button className="editBtn">Modifier vos informations</button>
+            </Link>
             <Link className="link" to="/">
               <button className="deleteBtn" onClick={deleteUser}>
                 Supprimer votre compte

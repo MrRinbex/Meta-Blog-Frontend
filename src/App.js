@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import Single from "./pages/Single";
 import Write from "./pages/Write";
 import Profile from "./pages/Profile";
+import ProfileEdite from "./pages/ProfileEdite";
 import Page404 from "./pages/Page404";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -36,6 +37,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/post/:id" element={<Single />} />
             <Route path="/profile/:id" element={<Profile />} />
+            <Route path="/edit/profile/:id" element={<ProfileEdite />} />
             <Route path="/write" element={<Write />} />
             <Route path="*" element={<Page404 />} />
             <Route path="/*" element={<Page404 />} />

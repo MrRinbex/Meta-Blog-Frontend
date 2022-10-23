@@ -100,7 +100,6 @@ const Write = () => {
             <label className="fileBtn" htmlFor="file">
               télécharger
             </label>
-            {/* <button className="firstBtn">Enregistrer comme Brouillon</button> */}
             {file ? (
               <button className="fileBtn" onClick={handleClick}>
                 {!state ? "Publier" : "Mettre à jour"}

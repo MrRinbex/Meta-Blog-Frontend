@@ -21,7 +21,7 @@ $greyColor: #abaeb4;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    border: 1px solid rgb(236, 231, 232);
+    // border: 1px solid rgb(236, 231, 232);
     
 }
 
@@ -225,16 +225,16 @@ $greyColor: #abaeb4;
         footer{
             padding: 20px;
             display: flex;
-            justify-content: flex-start;
+            justify-content: center;
             font-size: 1.3em;
-            align-items: self-end;
-            gap: 30%;
+            align-items: center;
+            gap: 5%;
             height: 25vh;
             color: var(--color-white);
 
 
             img{
-                width: 120px;
+                width: 100px;
             }
         }
 
@@ -663,6 +663,32 @@ $greyColor: #abaeb4;
 
             img{
                 object-fit: contain;
+            }
+        }
+
+             // EDIT PROFILE
+        
+             .editContainer{
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            padding: 20px;
+
+            .profileImg{
+                flex: 2;
+                display: flex;
+                align-items: center;
+
+                img{
+                    height: 200px;
+                    width: 200px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+
             }
         }
 
