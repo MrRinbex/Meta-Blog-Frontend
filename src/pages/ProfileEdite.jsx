@@ -53,12 +53,15 @@ const ProfileEdite = () => {
     // console.log(urlImage);
     try {
       userId &&
-        (await axios.put(`/api/users/${userId.id}`, {
-          username,
-          email,
-          password,
-          // img: file ? urlImage.secure_url : "",
-        }));
+        (await axios.put(
+          `https://meta-blog3-0.herokuapp.com/api/users/${userId.id}`,
+          {
+            username,
+            email,
+            password,
+            // img: file ? urlImage.secure_url : "",
+          }
+        ));
       navigate(`/profile/${userId.id}`);
     } catch (error) {
       console.log(error);
