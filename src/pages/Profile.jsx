@@ -7,12 +7,11 @@ import { motion } from "framer-motion";
 
 const Profile = () => {
   const userId = useLocation().state;
-  const [username, setUsername] = useState(userId?.username);
-  const [email, setEmail] = useState(userId?.email);
-  const [userImg, setUserImg] = useState(userId?.img);
-  const [posts, setPosts] = useState([]);
-
   const { currentUser, deleteUser } = useContext(AuthContext);
+  const [username, setUsername] = useState(currentUser?.username);
+  const [email, setEmail] = useState(currentUser?.email);
+  const [userImg, setUserImg] = useState(currentUser?.img);
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,7 +45,9 @@ const Profile = () => {
     if (currentUser.id === posts[i].userid) numberOfPosts++;
   }
 
-  return userId === null ? (
+  console.log(userId);
+
+  return userId.id !== currentUser.id ? (
     <Page404 />
   ) : (
     <motion.div

@@ -11,16 +11,18 @@ export const AuthContextProvider = ({ children }) => {
     const res = await axios.post(`/api/auth/login`, inputs);
     setCurrentUser(res.data);
   };
-  // const editUser = async ({ username, email, password, img }) => {
-  //   const res = await axios.put(`/api/users/${currentUser.id}`, {
-  //     username,
-  //     email,
-  //     password,
-  //     img,
-  //   });
-  //   setCurrentUser(res.data);
-  //   console.log(res.data);
-  // };
+  const editUser = async ({ id, username, email, password, img }) => {
+    const res = await axios.put(`/api/users/${currentUser.id}`, {
+      id,
+      username,
+      email,
+      password,
+      img,
+    });
+    setCurrentUser(res.data);
+    console.log(res.data);
+  };
+  console.log(currentUser);
 
   const logout = async (inputs) => {
     await axios.post(`/api/auth/logout`);
@@ -37,7 +39,9 @@ export const AuthContextProvider = ({ children }) => {
   }, [currentUser]);
 
   return (
-    <AuthContext.Provider value={{ currentUser, login, logout, deleteUser }}>
+    <AuthContext.Provider
+      value={{ currentUser, login, logout, deleteUser, editUser }}
+    >
       {children}
     </AuthContext.Provider>
   );
