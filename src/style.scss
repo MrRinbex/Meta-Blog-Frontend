@@ -21,7 +21,7 @@ $greyColor: #abaeb4;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    // border: 1px solid rgb(236, 231, 232);
+    border: 1px solid rgb(236, 231, 232);
     
 }
 
@@ -581,6 +581,31 @@ $greyColor: #abaeb4;
 
                     .spanInfo{
                         opacity: .75;
+                    }
+
+                    .buttonsProfile{
+                        display: flex;
+                        justify-content: space-evenly;
+
+                        .editBtn{
+                            padding: 10px;
+                            border: none;
+                            background-color: $lightBlue;
+                            color: var(--color-white);
+                            cursor: pointer;
+                            border-radius: 5px;
+
+                        }
+
+                        .deleteBtn{
+                            padding: 10px;
+                            border: none;
+                            background-color: var(--color-red);
+                            color: var(--color-white);
+                            cursor: pointer;
+                            border-radius: 5px;
+
+                        }
                     }
 
                 }

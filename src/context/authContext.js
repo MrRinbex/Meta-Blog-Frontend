@@ -17,12 +17,17 @@ export const AuthContextProvider = ({ children }) => {
     setCurrentUser(null);
   };
 
+  const deleteUser = async (userId) => {
+    await axios.delete(`/api/users/${currentUser.id}`);
+    setCurrentUser(null);
+  };
+
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(currentUser));
   }, [currentUser]);
 
   return (
-    <AuthContext.Provider value={{ currentUser, login, logout }}>
+    <AuthContext.Provider value={{ currentUser, login, logout, deleteUser }}>
       {children}
     </AuthContext.Provider>
   );

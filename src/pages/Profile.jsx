@@ -12,7 +12,7 @@ const Profile = () => {
   const [userImg, setUserImg] = useState(userId?.img);
   const [posts, setPosts] = useState([]);
 
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, deleteUser } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,8 +28,6 @@ const Profile = () => {
     fetchData();
   }, [userId]);
 
-  //
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -42,6 +40,9 @@ const Profile = () => {
     fetchData();
   }, []);
 
+  console.log(currentUser);
+
+  // number of user posts
   let numberOfPosts = 0;
   for (let i = 0; i < posts.length; i++) {
     if (currentUser.id === posts[i].userid) numberOfPosts++;
@@ -93,6 +94,14 @@ const Profile = () => {
             <h3>Mot de passe</h3>
             <span className="spanInfo">********</span>
           </span>
+          <div className="buttonsProfile">
+            <button className="editBtn">Modifier vos informations</button>
+            <Link className="link" to="/">
+              <button className="deleteBtn" onClick={deleteUser}>
+                Supprimer votre compte
+              </button>
+            </Link>
+          </div>
         </motion.div>
       </div>
       <motion.div
