@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { AuthContext } from "../context/authContext";
 
 const ProfileEdite = () => {
-  const { currentUser } = useContext(AuthContext);
+  // const { currentUser } = useContext(AuthContext);
   const userId = useLocation().state;
   const [username, setUsername] = useState(userId?.username || "");
   const [email, setEmail] = useState(userId?.email || "");
@@ -52,13 +52,13 @@ const ProfileEdite = () => {
     let urlImage = await upload();
     console.log(urlImage);
     try {
-      await axios.put(`/api/users/${currentUser.id}`, {
+      await axios.put(`/api/users/${userId.id}`, {
         username,
         email,
         password,
         img: file ? urlImage.secure_url : "",
       });
-      navigate(`/`);
+      navigate(`/profile/${userId.id}`);
     } catch (error) {
       console.log(error);
     }
