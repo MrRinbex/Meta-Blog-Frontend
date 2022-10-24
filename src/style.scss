@@ -108,7 +108,7 @@ $greyColor: #abaeb4;
             align-items: center;
             justify-content: center;
             background-color: $mainColor;
-            height: 50vh;
+            height: 60vh;
 
             h1{
                 color: $whiteColor;
@@ -226,12 +226,12 @@ $greyColor: #abaeb4;
             padding: 20px;
             display: flex;
             justify-content: center;
-            font-size: 1.3em;
+            font-size: 1em;
             align-items: center;
             gap: 5%;
-            height: 25vh;
+            height: 15vh;
             color: var(--color-white);
-
+            border-top: 1px solid $lightBlue;
 
             img{
                 width: 100px;
@@ -241,7 +241,7 @@ $greyColor: #abaeb4;
         //HOMEPAGE
 
         .home{
-            min-height: 43vh;
+            min-height: 53vh;
 
             .posts{
                 margin-top: 50px;
@@ -312,7 +312,7 @@ $greyColor: #abaeb4;
         .single{
             display: flex;
             gap: 50px;
-            min-height: 50vh;
+            min-height: 60vh;
 
             .leftBlock{
                 flex: 5;
@@ -407,7 +407,7 @@ $greyColor: #abaeb4;
         .writePage{
             display: flex;
             gap: 30px;
-            height: 37vh;
+            height: 52vh;
             margin-bottom: 50px;
             margin-top: 50px;
 
@@ -533,6 +533,7 @@ $greyColor: #abaeb4;
 
         .profile{
             display: flex;
+            height: 60vh;
 
             .info{
                 flex: 2;
@@ -647,10 +648,11 @@ $greyColor: #abaeb4;
             display: flex;
             align-items: center;
             justify-content: center;
+            height: 60vh;
             
             img{
-                height: 50vh;
-                padding: 30px;
+                height: 40vh;
+                padding-bottom: 10vh;
             }
         }
 
@@ -659,36 +661,90 @@ $greyColor: #abaeb4;
         .loader{
             display: flex;
             justify-content: center;
-            height: 50vh;            
+            height: 60vh;            
 
             img{
-                object-fit: contain;
+                height: 40vh;
             }
         }
 
              // EDIT PROFILE
         
              .editContainer{
-            height: 50vh;
+            height: 60vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-evenly;
             align-items: center;
-            gap: 50px;
+            gap: 10px;
             padding: 20px;
 
             .profileImg{
-                flex: 2;
                 display: flex;
                 align-items: center;
+                flex-direction: column;
+                position: relative;
 
-                img{
+                .avatar{
                     height: 200px;
                     width: 200px;
                     border-radius: 50%;
                     object-fit: cover;
                 }
+                .upload{
+                    width: 40px;
+                    height: 40px;
+                    cursor: pointer;
+                    position: absolute;
+                    right: 5px;
+                    bottom: 1px;
+                }
 
+            }
+            .profileInfo{
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                
+                span{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    color: #038d6c;
+                
+                h1{
+                    color: var(--color-white);
+                    text-decoration-line: underline;
+                    margin-bottom: 5px;
+                }
+
+                h3{
+                    margin-bottom: 5px;
+                }
+                
+                input{
+                    background-color: $whiteColor;
+                    color: var(--color-black-1);
+                    border: 1px solid $lightBlue;
+                    border-radius: 5px;
+                    padding: 7px;
+                }
+                
+                .confirmBtn{
+                    padding: 10px;
+                    border: none;
+                    background-color: $greenColor;
+                    color: var(--color-white);
+                    cursor: pointer;
+                    border-radius: 5px;
+
+                }
+                
+                p{
+                    color: var(--color-red);
+                }
+            }
             }
         }
 

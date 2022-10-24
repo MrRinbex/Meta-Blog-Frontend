@@ -4,14 +4,15 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { AuthContext } from "../context/authContext";
+import uploadIcon from "../img/upload.png";
 
 const ProfileEdite = () => {
-  const { editUser } = useContext(AuthContext);
+  const { editUser, currentUser } = useContext(AuthContext);
   const userId = useLocation().state;
   const [username, setUsername] = useState(userId?.username || "");
   const [email, setEmail] = useState(userId?.email || "");
   const [password, setPassword] = useState("");
-  const [file, setFile] = useState(
+  const [fileImg, setFileImg] = useState(
     userId?.img ||
       "https://res.cloudinary.com/dpnotxpqf/image/upload/v1665885592/blog/userDefault_c8cxqu.png"
   );
@@ -24,7 +25,7 @@ const ProfileEdite = () => {
   const upload = async () => {
     try {
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append("file", fileImg);
       formData.append("upload_preset", uploadPrest);
       const response = await axios.post(cloudinaryRequest, formData);
       return response.data;
@@ -36,18 +37,15 @@ const ProfileEdite = () => {
   const handleClick = async (event) => {
     event.preventDefault();
     let urlImage = await upload();
-    // if (urlImage) {
-    //   setFile(urlImage.secure_url);
-    // }
     try {
       userId &&
         (await editUser({
           username,
           email,
           password,
-          img: file ? urlImage.secure_url : "",
+          img: fileImg ? urlImage.secure_url : "",
         }));
-      navigate(`/`);
+      navigate(`/profile/${currentUser.id}`);
     } catch (error) {
       console.log(error);
     }
@@ -58,7 +56,7 @@ const ProfileEdite = () => {
         const res = await axios.get(`/api/users/${userId.id}`);
         setUsername(res.data.username);
         setEmail(res.data.email);
-        setFile(res.data.img);
+        setFileImg(res.data.img);
       } catch (error) {
         console.log(error);
       }
@@ -68,31 +66,47 @@ const ProfileEdite = () => {
 
   return (
     <div className="editContainer">
-      <div>
-        <motion.div
-          className="profileImg"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 2.7 }}
-        >
-          <img src={userId?.img || file} value={file} alt={"Avatar"} />
-          <input
-            style={{ display: "none" }}
-            type="file"
-            id="file"
-            onChange={(e) => setFile(e.target.files[0])}
+      <motion.div
+        className="profileImg"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 2.7 }}
+      >
+        <img
+          className="avatar"
+          src={userId.img ? userId.img : fileImg}
+          value={fileImg}
+          alt={"Avatar"}
+        />
+        <input
+          style={{ display: "none" }}
+          type="file"
+          id="file"
+          onChange={(e) => setFileImg(e.target.files[0])}
+        />
+        <label className="file" htmlFor="file">
+          <img
+            className="upload"
+            htmlFor="file"
+            src={uploadIcon}
+            alt={"télécharger"}
           />
-          <label className="file" htmlFor="file">
-            télécharger une image
-          </label>
-        </motion.div>
+        </label>
+      </motion.div>
+      <motion.div
+        className="profileInfo"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 2.7 }}
+      >
         <span>
           <h1>Modifier votre compte</h1>
         </span>
         <span>
           <h3>Identifiant</h3>
-          <span className="spanInfo">
+          <span>
             <input
               type="text"
               name="username"
@@ -103,7 +117,7 @@ const ProfileEdite = () => {
         </span>
         <span>
           <h3>Email</h3>
-          <span className="spanInfo">
+          <span>
             <input
               type="text"
               name="email"
@@ -113,26 +127,26 @@ const ProfileEdite = () => {
           </span>
         </span>
         <span>
-          <h3>Nouveau Mot de passe</h3>
-          <span className="spanInfo">
+          <h3>Mot de passe</h3>
+          <span>
             <input
               required
               type="text"
-              placeholder="Nouveau mot de passe obligatoire"
+              placeholder="Nouveau mot de passe"
               onChange={(e) => setPassword(e.target.value)}
             />
           </span>
         </span>
         <span>
           {password ? (
-            <button className="secondBtn" onClick={handleClick}>
-              Valider!
+            <button className="confirmBtn" onClick={handleClick}>
+              Valider
             </button>
           ) : (
-            "Nouveau mot de passe obligatoire"
+            <p>Nouveau mot de passe obligatoire</p>
           )}
         </span>
-      </div>
+      </motion.div>
     </div>
   );
 };

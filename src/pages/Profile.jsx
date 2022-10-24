@@ -6,17 +6,18 @@ import Page404 from "./Page404";
 import { motion } from "framer-motion";
 
 const Profile = () => {
-  const userId = useLocation().state;
   const { currentUser, deleteUser } = useContext(AuthContext);
   const [username, setUsername] = useState(currentUser?.username);
   const [email, setEmail] = useState(currentUser?.email);
   const [userImg, setUserImg] = useState(currentUser?.img);
   const [posts, setPosts] = useState([]);
+  const location = useLocation();
+  const userId = parseInt(location.pathname.split("/")[2]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`/api/users/${userId.id}`);
+        const res = await axios.get(`/api/users/${currentUser.id}`);
         setUsername(res.data.username);
         setEmail(res.data.email);
         setUserImg(res.data.img);
@@ -25,7 +26,7 @@ const Profile = () => {
       }
     };
     fetchData();
-  }, [userId]);
+  }, [currentUser]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,10 +47,8 @@ const Profile = () => {
   }
 
   console.log(userId);
-
-  return userId.id !== currentUser.id ? (
-    <Page404 />
-  ) : (
+  console.log(currentUser.id);
+  return currentUser.id === userId ? (
     <motion.div
       className="profile"
       initial={{ opacity: 0 }}
@@ -96,8 +95,8 @@ const Profile = () => {
           <div className="buttonsProfile">
             <Link
               className="link"
-              to={`/edit/profile/${userId.id}`}
-              state={userId}
+              to={`/edit/profile/${currentUser.id}`}
+              state={currentUser}
             >
               <button className="editBtn">Modifier vos informations</button>
             </Link>
@@ -131,6 +130,8 @@ const Profile = () => {
         )}
       </motion.div>
     </motion.div>
+  ) : (
+    <Page404 />
   );
 };
 

@@ -20,9 +20,7 @@ export const AuthContextProvider = ({ children }) => {
       img,
     });
     setCurrentUser(res.data);
-    console.log(res.data);
   };
-  console.log(currentUser);
 
   const logout = async (inputs) => {
     await axios.post(`/api/auth/logout`);
