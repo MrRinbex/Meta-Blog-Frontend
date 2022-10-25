@@ -41,7 +41,6 @@ const Single = () => {
       console.log(error);
     }
   };
-
   return loaded ? (
     <motion.div
       className="single"
@@ -68,7 +67,7 @@ const Single = () => {
         >
           {post.userImg && <img src={post?.userImg} alt="user img" />}
           <div className="info">
-            <span>{post.username}</span>
+            {post.username && <span>{post.username}</span>}
             <p>Article publié {moment(post.date).fromNow()}</p>
           </div>
           {currentUser?.username === post.username && (
