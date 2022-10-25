@@ -46,8 +46,6 @@ const Profile = () => {
     if (currentUser.id === posts[i].userid) numberOfPosts++;
   }
 
-  console.log(userId);
-  console.log(currentUser.id);
   return currentUser.id === userId ? (
     <motion.div
       className="profile"
