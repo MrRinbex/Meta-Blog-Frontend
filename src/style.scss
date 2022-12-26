@@ -533,7 +533,7 @@ $greyColor: #abaeb4;
 
         .profile{
             display: flex;
-            height: 60vh;
+            min-height: 60vh;
 
             .info{
                 flex: 2;
